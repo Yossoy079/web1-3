@@ -2,91 +2,92 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public class Player
+{
+    private int hp = 100;
+    private int power = 50;
+
+    public void Attack()
+    {
+        Debug.Log(this.power + "のダメージを与えた");
+    }
+    public void Damage(int damage)
+    {
+        this.hp -= damage;
+        Debug.Log(damage + "のダメージを受けた");
+    }
+}
+
 public class Test : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        //Helo, Worldをコンソールウィンドウに表示する
-        Debug.Log("Hello, World");
+        int i;
+        int[] array = new int[5];
 
-        int age;
-        age = 30;
-        Debug.Log(age);
+        array[0] = 2;
+        array[1] = 10;
+        array[2] = 5;
+        array[3] = 15;
+        array[4] = 3;
 
-        float height1 = 160.5f;
-        float height2;
-        height2 = height1;
-        Debug.Log(height2);
+        for(i = 0; i<5; i++)
+        {
+            Debug.Log(array[i]);
+        }
 
-        string name;
-        name = "kitamura";
-        Debug.Log(name);
+        int[] points = { 83, 99, 52, 93, 15 };
 
+        for(i=0; i < points.Length; i++)
+        {
+            if(points[i] >= 90)
+            {
+                Debug.Log(points[i]);
+            }
+        }
+
+        SayHello();
+        CallName("Tom");
         int answer;
-        answer = 1 + 2;
+        answer = Add(2, 3);
         Debug.Log(answer);
 
-        answer = 3 - 4;
-        Debug.Log(answer);
+        Player myPlayer = new Player();
+        myPlayer.Attack();
+        myPlayer.Damage(30);
 
-        answer = 5 * 6;
-        Debug.Log(answer);
+        Vector2 playerPos = new Vector2(3.0f, 4.0f);
+        playerPos.x += 8.0f;
+        playerPos.y += 5.0f;
+        Debug.Log(playerPos);
 
-        answer = 8 / 4;
-        Debug.Log(answer);
+        Vector2 startPos = new Vector2(2.0f, 1.0f);
+        Vector2 endPos = new Vector2(8.0f, 5.0f);
+        Vector2 dir = endPos - startPos;
+        Debug.Log(dir);
 
-        int n1 = 8;
-        int n2 = 9;
+        float len = dir.magnitude;
+        Debug.Log(len);
 
-        answer = n1 + n2;
-        Debug.Log(answer);
+    }
 
-        string str1 = "happy ";
-        string str2 = "birthday";
-        string message;
-        int num = 123;
+    void SayHello()
+    {
+        Debug.Log("Hello");
+    }
 
-        message = str1 + str2;
-        str1 += str2;
+    void CallName(string name)
+    {
+        Debug.Log("Hello" + name);
+    }
+    int Add(int a, int b)
+    {
+        int c = a + b;
+        return c;
+    }
 
-        Debug.Log(message);
-        Debug.Log(str1);
-
-        message = str2 + num;
-        Debug.Log(message);
-
-        int herbNum = 1;
-        if (herbNum == 1)
-        {
-            Debug.Log("HPが50回復");
-        }
-
-        int hp = 180;
-        if (hp <= 50)
-        {
-            Debug.Log("逃走！");
-        }
-        else if (hp >= 200)
-        {
-            Debug.Log("攻撃！");
-        }
-        else
-        {
-            Debug.Log("防御！");
-        }
-        int sum = 0;
-        for(int i = 0; i< 5; i++)
-        {
-            sum += i;
-            Debug.Log(i);
-        }
-        Debug.Log(sum);
-
-
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update () {
 		
 	}
 }
